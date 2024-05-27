@@ -1,0 +1,41 @@
+image:
+  repository: ghcr.io/kuper-s/argo_app
+  tag: latest
+
+apiServer:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/kuper-s/argo_app_api
+    tag: latest  # Replace with the actual tag, e.g., 1.0.<SHA>
+  service:
+    type: ClusterIP
+    port: 5000
+  kafkaBroker: my-kafka-kafka-helm-b.default.svc.cluster.local:9092
+  mongoUriSecret: mongo-secret
+  mongoUriKey: uri
+
+clientServer:
+  replicaCount: 1
+  image:
+    repository: ghcr.io/kuper-s/argo_app_client
+    tag: latest  # Replace with the actual tag, e.g., 1.0.<SHA>
+  service:
+    type: ClusterIP
+    port: 8000
+  kafkaBroker: my-kafka-kafka-helm-b.default.svc.cluster.local:9092
+  apiServerUrl: http://api-server-svc.default.svc.cluster.local:5000
+  ingress:
+    enabled: true
+    className: nginx
+    annotations: {}
+    hosts:
+      - host: client.example.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+
+kafka:
+  broker: my-kafka-kafka-helm-b.default.svc.cluster.local:9092
+

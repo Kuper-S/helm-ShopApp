@@ -1,0 +1,6 @@
+apiVersion: v2
+name: my-app
+description: A Helm chart for deploying my Shop-application
+version: 0.1.0
+appVersion: "1.0.31e9251858ca4470fe7653955e4a1591f47b4cf2"
+
