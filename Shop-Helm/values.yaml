@@ -5,7 +5,7 @@ apiServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_api
-    tag: 4249dcbe0c8f1fdb77111446db06506e7f6f7944 # Replace with the actual tag, e.g., 1.0.<SHA>
+    tag: 8977272a59f07bf490a3f46fcdacf5cf810293f6 # Replace with the actual tag, e.g., 1.0.<SHA>
   service:
     type: ClusterIP
     port: 5000
@@ -16,7 +16,7 @@ clientServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_client
-    tag: 4249dcbe0c8f1fdb77111446db06506e7f6f7944 # Replace with the actual tag, e.g., 1.0.<SHA>
+    tag: 8977272a59f07bf490a3f46fcdacf5cf810293f6 # Replace with the actual tag, e.g., 1.0.<SHA>
   service:
     type: ClusterIP
     port: 8000
