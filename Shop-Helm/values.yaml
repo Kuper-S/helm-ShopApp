@@ -5,7 +5,7 @@ apiServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_api
-    tag: latest # This should be dynamically set by the Flask app
+    tag: latest  # This will be dynamically set by the Flask app
   service:
     type: ClusterIP
     port: 5000
@@ -16,7 +16,7 @@ clientServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_client
-    tag: latest # This should be dynamically set by the Flask app
+    tag: latest  # This will be dynamically set by the Flask app
   service:
     type: ClusterIP
     port: 8000
@@ -26,8 +26,8 @@ clientServer:
     enabled: true
     className: nginx
     annotations: {}
-    hosts:
-      - host: client.example.com # This should be dynamically set by the Flask app
-    tls: []
+    host: client.example.com  # This will be dynamically set by the Flask app
+    namespace: ""  # This will be dynamically set by the Flask app
 kafka:
   broker: my-kafka-kafka-helm-b.default.svc.cluster.local:9092
+
