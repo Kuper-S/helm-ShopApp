@@ -6,13 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: {{ .Values.clientServer.ingress.hosts[0].host }}
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: client-server-svc
-            port:
-              number: {{ .Values.clientServer.service.port }}
+    - host: {{ .Values.clientServer.ingress.hosts[0].host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: client-server-svc
+                port:
+                  number: {{ .Values.clientServer.service.port }}
