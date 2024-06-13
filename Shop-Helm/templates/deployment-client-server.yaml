@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: client-server
+  labels:
+    app: client-server
 spec:
-  replicas: 1
+  replicas: {{ .Values.clientServer.replicaCount }}
   selector:
     matchLabels:
       app: client-server
@@ -14,10 +16,11 @@ spec:
     spec:
       containers:
       - name: client-server
-        image: "ghcr.io/kuper-s/argo_app_client:latest"
+        image: "{{ .Values.clientServer.image.repository }}:{{ .Values.clientServer.image.tag }}"
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.clientServer.service.port }}
         env:
         - name: KAFKA_BROKER
-          value: {{ .Values.kafka.broker }}
-
+          value: {{ .Values.clientServer.kafkaBroker }}
+        - name: API_SERVER_URL
+          value: {{ .Values.clientServer.apiServerUrl }}
