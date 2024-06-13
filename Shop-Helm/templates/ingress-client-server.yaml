@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: client.example.com
+  - host: {{ .Values.clientServer.ingress.hosts[0].host }}
     http:
       paths:
       - path: /
@@ -15,4 +15,4 @@ spec:
           service:
             name: client-server-svc
             port:
-              number: 8000
+              number: {{ .Values.clientServer.service.port }}
