@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-server
+  labels:
+    app: api-server
 spec:
-  replicas: 1
+  replicas: {{ .Values.apiServer.replicaCount }}
   selector:
     matchLabels:
       app: api-server
@@ -14,16 +16,14 @@ spec:
     spec:
       containers:
       - name: api-server
-        image: "ghcr.io/kuper-s/argo_app_api:latest"
+        image: "{{ .Values.apiServer.image.repository }}:{{ .Values.apiServer.image.tag }}"
         ports:
-        - containerPort: 5000
+        - containerPort: {{ .Values.apiServer.service.port }}
         env:
         - name: MONGO_URI
           valueFrom:
             secretKeyRef:
-              name: mongo-secret
-              key: uri
+              name: {{ .Values.apiServer.mongoUriSecret }}
+              key: {{ .Values.apiServer.mongoUriKey }}
         - name: KAFKA_BROKER
-          value: {{ .Values.kafka.broker }}
-
-
+          value: {{ .Values.apiServer.kafkaBroker }}
