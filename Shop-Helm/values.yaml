@@ -5,7 +5,7 @@ apiServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_api
-    tag: 840c0faacecafcfd6e2b554c62c5a0c515454e67 # This will be dynamically set by the Flask app
+    tag: 7a5004720c5ae78b09c56afc43fe799769e2df85 # This will be dynamically set by the Flask app
   service:
     type: ClusterIP
     port: 5000
@@ -16,7 +16,7 @@ clientServer:
   replicaCount: 1
   image:
     repository: ghcr.io/kuper-s/argo_app_client
-    tag: 840c0faacecafcfd6e2b554c62c5a0c515454e67 # This will be dynamically set by the Flask app
+    tag: 7a5004720c5ae78b09c56afc43fe799769e2df85 # This will be dynamically set by the Flask app
   service:
     type: ClusterIP
     port: 8000
